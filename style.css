@@ -17,3 +17,24 @@ html, body {
     height: 15px;
     background-color: blue;
 }
+
+.pac-dots {
+    background-color: pink;
+    border: 5px solid white;
+    box-sizing: border-box; /* this puts the border on the inside */
+}
+
+.wall {
+    background-color: coral;
+}
+
+.power-pellets {
+    background-color: greenyellow;
+    border-radius: 7.5px;
+
+}
+
+.pacman {
+    background-color: yellow;
+    border-radius: 7.5px;
+}
