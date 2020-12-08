@@ -43,15 +43,11 @@ const layout = [
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 
 ]
 
-
-// function createGrid() {
-//     for(let i = 0; i < squares; i++) {
-//         //create div element
-//         let div = document.createElement("div");
-
-//         grid.appendChild(div);
-//         //place it into the grid
-//     }
-// }
-
-// createGrid();
+function createBoard() {
+    for(let i = 0; i < layout.length; i++) {
+        const div = document.createElement('div');
+        grid.appendChild(div);
+        //have to apply the class based on the number
+        
+    }
+}
