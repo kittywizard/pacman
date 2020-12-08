@@ -47,20 +47,19 @@ function createBoard() {
         switch(layout[i]){
             case 0:
                 //pac-dots
-                console.log(i + " is 0");
-                //layout[i].classList.add('pac-dots'); 
+                div.classList.add('pac-dots'); 
                 break;
             case 1:
-                //thing
+                div.classList.add('wall'); 
                 break;
             case 2: 
-                //thing
+                div.classList.add('ghost-lair');
                 break;
             case 3:
-                //thing
+                div.classList.add('power-pellets');
                 break;
             case 4:
-                //thing
+                div.classList.add('empty');
                 break;
         }
     }
