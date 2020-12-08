@@ -1,16 +1,10 @@
 //creating the grid
-const squares = width * width;
 const width = 28;
+const squares = width * width;
 
 const grid = document.querySelector(".grid");
 let score = document.getElementById("score");
-
-  //28 * 28 = 784
-  // 0 - pac-dots
-  // 1 - wall
-  // 2 - ghost-lair
-  // 3 - power-pellet
-  // 4 - empty
+let squareArr = [];
 
 const layout = [
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -47,7 +41,35 @@ function createBoard() {
     for(let i = 0; i < layout.length; i++) {
         const div = document.createElement('div');
         grid.appendChild(div);
+        squareArr.push(div);
         //have to apply the class based on the number
-        
+
+        switch(layout[i]){
+            case 0:
+                //pac-dots
+                console.log(i + " is 0");
+                //layout[i].classList.add('pac-dots'); 
+                break;
+            case 1:
+                //thing
+                break;
+            case 2: 
+                //thing
+                break;
+            case 3:
+                //thing
+                break;
+            case 4:
+                //thing
+                break;
+        }
     }
 }
+  //28 * 28 = 784
+  // 0 - pac-dots
+  // 1 - wall
+  // 2 - ghost-lair
+  // 3 - power-pellet
+  // 4 - empty
+
+createBoard();
