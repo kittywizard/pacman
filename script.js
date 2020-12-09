@@ -5,6 +5,7 @@ const squares = width * width;
 const grid = document.querySelector(".grid");
 let score = document.getElementById("score");
 let squareArr = [];
+let direction = 1;
 
 const layout = [
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -75,3 +76,38 @@ createBoard();
 
 let pacmanCurrentIndex = 500;
 squareArr[pacmanCurrentIndex].classList.add('pacman');
+
+function gameControl(e){
+    squareArr[pacmanCurrentIndex].classList.remove('pacman');
+    switch(e.keyCode) {
+        case 87:
+            //w
+            if (pacmanCurrentIndex % width !== 0) pacmanCurrentIndex -=width;
+            break;
+
+        case 65:
+            //a
+            if (pacmanCurrentIndex % width !== 0) pacmanCurrentIndex -=1;
+            break;
+
+        case 83:
+            //s
+            if (pacmanCurrentIndex % width !== 0) pacmanCurrentIndex += width;
+            break;
+
+        case 68:
+            //d
+            if (pacmanCurrentIndex % width !== 0) pacmanCurrentIndex +=1;
+            break;
+    }
+    squareArr[pacmanCurrentIndex].classList.add('pacman');
+
+}
+
+//KeyCodes
+    //W - 87
+    //A - 65
+    //S - 83
+    //D - 68
+
+    document.addEventListener('keyup', gameControl);
