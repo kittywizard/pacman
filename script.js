@@ -47,19 +47,19 @@ function createBoard() {
         switch(layout[i]){
             case 0:
                 //pac-dots
-                div.classList.add('pac-dots'); 
+                squareArr[i].classList.add('pac-dots'); 
                 break;
             case 1:
-                div.classList.add('wall'); 
+                squareArr[i].classList.add('wall'); 
                 break;
             case 2: 
-                div.classList.add('ghost-lair');
+                squareArr[i].classList.add('ghost-lair');
                 break;
             case 3:
-                div.classList.add('power-pellets');
+                squareArr[i].classList.add('power-pellets');
                 break;
             case 4:
-                div.classList.add('empty');
+                squareArr[i].classList.add('empty');
                 break;
         }
     }
@@ -72,3 +72,6 @@ function createBoard() {
   // 4 - empty
 
 createBoard();
+
+let pacmanCurrentIndex = 500;
+squareArr[pacmanCurrentIndex].classList.add('pacman');
