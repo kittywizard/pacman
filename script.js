@@ -82,22 +82,31 @@ function gameControl(e){
     switch(e.keyCode) {
         case 87:
             //w - up
-            if (pacmanCurrentIndex - width >= 0) pacmanCurrentIndex -=width;
+            //check the square directly above the current index
+            if (!squareArr[pacmanCurrentIndex - width].classList.contains('wall') &&
+                pacmanCurrentIndex - width >= 0) 
+                pacmanCurrentIndex -=width;
             break;
 
         case 65:
             //a - left
-            if (pacmanCurrentIndex % width !== 0) pacmanCurrentIndex -=1;
+            if (!squareArr[pacmanCurrentIndex % width].classList.contains('wall') &&
+                pacmanCurrentIndex % width !== 0) 
+                pacmanCurrentIndex -=1;
             break;
 
         case 83:
             //s - down
-            if (pacmanCurrentIndex + width < width * width) pacmanCurrentIndex += width;
+            if (!squareArr[pacmanCurrentIndex + width].classList.contains('wall') &&
+                pacmanCurrentIndex + width < width * width) 
+                pacmanCurrentIndex += width;
             break;
 
         case 68:
             //d - right
-            if (pacmanCurrentIndex % width < width -1) pacmanCurrentIndex +=1;
+            if (!squareArr[pacmanCurrentIndex % width].classList.contains('wall') &&
+                pacmanCurrentIndex % width < width -1) 
+                pacmanCurrentIndex +=1;
             break;
     }
     squareArr[pacmanCurrentIndex].classList.add('pacman');
