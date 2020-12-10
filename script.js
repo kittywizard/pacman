@@ -81,23 +81,23 @@ function gameControl(e){
     squareArr[pacmanCurrentIndex].classList.remove('pacman');
     switch(e.keyCode) {
         case 87:
-            //w
-            if (pacmanCurrentIndex % width !== 0) pacmanCurrentIndex -=width;
+            //w - up
+            if (pacmanCurrentIndex - width >= 0) pacmanCurrentIndex -=width;
             break;
 
         case 65:
-            //a
+            //a - left
             if (pacmanCurrentIndex % width !== 0) pacmanCurrentIndex -=1;
             break;
 
         case 83:
-            //s
-            if (pacmanCurrentIndex % width !== 0) pacmanCurrentIndex += width;
+            //s - down
+            if (pacmanCurrentIndex + width < width * width) pacmanCurrentIndex += width;
             break;
 
         case 68:
-            //d
-            if (pacmanCurrentIndex % width !== 0) pacmanCurrentIndex +=1;
+            //d - right
+            if (pacmanCurrentIndex % width < width -1) pacmanCurrentIndex +=1;
             break;
     }
     squareArr[pacmanCurrentIndex].classList.add('pacman');
