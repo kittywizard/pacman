@@ -90,7 +90,7 @@ function gameControl(e){
 
         case 65:
             //a - left
-            if (!squareArr[pacmanCurrentIndex % width].classList.contains('wall') &&
+            if (!squareArr[pacmanCurrentIndex - 1].classList.contains('wall') &&
                 pacmanCurrentIndex % width !== 0) 
                 pacmanCurrentIndex -=1;
             break;
@@ -98,13 +98,14 @@ function gameControl(e){
         case 83:
             //s - down
             if (!squareArr[pacmanCurrentIndex + width].classList.contains('wall') &&
+                !squareArr[pacmanCurrentIndex + width].classList.contains('ghost-lair') &&
                 pacmanCurrentIndex + width < width * width) 
                 pacmanCurrentIndex += width;
             break;
 
         case 68:
             //d - right
-            if (!squareArr[pacmanCurrentIndex % width].classList.contains('wall') &&
+            if (!squareArr[pacmanCurrentIndex + 1].classList.contains('wall') &&
                 pacmanCurrentIndex % width < width -1) 
                 pacmanCurrentIndex +=1;
             break;
