@@ -73,8 +73,15 @@ function createBoard() {
   // 3 - power-pellet
   // 4 - empty
 
+  //KeyCodes
+    //W - 87
+    //A - 65
+    //S - 83
+    //D - 68
+
 createBoard();
 
+//pacman's starting position
 let pacmanCurrentIndex = 500;
 squareArr[pacmanCurrentIndex].classList.add('pacman');
 
@@ -126,10 +133,48 @@ function pacdotEater() {
         squareArr[pacmanCurrentIndex].classList.remove("pac-dots");
         }
 }
-//KeyCodes
-    //W - 87
-    //A - 65
-    //S - 83
-    //D - 68
 
-    document.addEventListener('keyup', gameControl);
+document.addEventListener('keyup', gameControl);
+
+//creating all the ghost elements and then placing them on the board
+class Ghost {
+    constructor(className, startIndex, speed) {
+        this.className = className;
+        this.startIndex = startIndex;
+        this.speed = speed;
+
+        this.currentIndex = startIndex;
+        this.isScared = false;
+        this.timerId = NaN;
+    }
+}
+
+ghosts = [
+    new Ghost('blinky', 348, 250),
+    new Ghost('pinky', 376, 400),
+    new Ghost('inky', 351, 300),
+    new Ghost('clyde', 379, 500)
+];
+
+ghosts.forEach(element => squareArr[element.startIndex].classList.add(element.className));
+
+//moving the ghosts
+ghosts.forEach(element => moveGhosts(element));
+
+function moveGhosts(ghost) {
+    const directions = [-1, +1, -width, +width];
+
+    //generate random number
+    let randomDirection = directions[Math.floor(Math.random() * directions.length)];
+    
+    ghost.timerId = setInterval(function() {
+
+        // //remove ghost class 
+        // squareArr[ghost.currentIndex].classList.remove(ghost.className);
+        // ghost.currentIndex += randomDirection;
+        // squareArr[ghost.currentIndex].classList.add(ghost.className);
+
+    }, ghost.speed);
+}
+
+clearInterval(ghost.timerId);
