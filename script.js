@@ -3,9 +3,10 @@ const width = 28;
 const squares = width * width;
 
 const grid = document.querySelector(".grid");
-let score = document.getElementById("score");
+const scoreDisplay = document.getElementById("score");
 let squareArr = [];
 let direction = 1;
+let score = 0;
 
 const layout = [
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -93,6 +94,7 @@ function gameControl(e){
             if (!squareArr[pacmanCurrentIndex - 1].classList.contains('wall') &&
                 pacmanCurrentIndex % width !== 0) 
                 pacmanCurrentIndex -=1;
+            if(pacmanCurrentIndex === 364) pacmanCurrentIndex = 391;
             break;
 
         case 83:
@@ -108,12 +110,22 @@ function gameControl(e){
             if (!squareArr[pacmanCurrentIndex + 1].classList.contains('wall') &&
                 pacmanCurrentIndex % width < width -1) 
                 pacmanCurrentIndex +=1;
+            if(pacmanCurrentIndex === 391) pacmanCurrentIndex = 364;
+
             break;
     }
     squareArr[pacmanCurrentIndex].classList.add('pacman');
+    pacdotEater();
 
 }
 
+function pacdotEater() {
+    if (squareArr[pacmanCurrentIndex].classList.contains("pac-dots")) {
+        score++;
+        scoreDisplay.innerHTML = score;
+        squareArr[pacmanCurrentIndex].classList.remove("pac-dots");
+        }
+}
 //KeyCodes
     //W - 87
     //A - 65
