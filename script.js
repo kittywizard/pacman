@@ -123,6 +123,7 @@ function gameControl(e){
     }
     squareArr[pacmanCurrentIndex].classList.add('pacman');
     pacdotEater();
+    eatPowerPellets();
 
 }
 
@@ -132,6 +133,21 @@ function pacdotEater() {
         scoreDisplay.innerHTML = score;
         squareArr[pacmanCurrentIndex].classList.remove("pac-dots");
         }
+}
+
+function eatPowerPellets() {
+    //if pacman index contains power pellet class
+    if(squareArr[pacmanCurrentIndex].classList.contains("power-pellets")) {
+        score += 10;
+        scoreDisplay.innerHTML = score;
+
+        squareArr[pacmanCurrentIndex].classList.remove("power-pellets");
+
+        ghosts.forEach(element => element.isScared = true);
+
+        setTimeout(() => ghosts.forEach(element => element.isScared = false), 10000);
+    }
+
 }
 
 document.addEventListener('keyup', gameControl);
@@ -156,11 +172,16 @@ ghosts = [
     new Ghost('clyde', 379, 500)
 ];
 
-ghosts.forEach(element => squareArr[element.startIndex].classList.add(element.className));
+//adding the class names to each element
+ghosts.forEach(element => {
+    squareArr[element.startIndex].classList.add(element.className);
+    squareArr[element.startIndex].classList.add('ghost');
+});
 
-//moving the ghosts
+//invoking the move ghosts function
 ghosts.forEach(element => moveGhosts(element));
 
+//moves
 function moveGhosts(ghost) {
     const directions = [-1, +1, -width, +width];
 
@@ -168,13 +189,40 @@ function moveGhosts(ghost) {
     let randomDirection = directions[Math.floor(Math.random() * directions.length)];
     
     ghost.timerId = setInterval(function() {
+        //if does not contain wall or another ghost
+        if(!squareArr[ghost.currentIndex + randomDirection].classList.contains('ghost') &&
+           !squareArr[ghost.currentIndex + randomDirection].classList.contains('wall')) 
+        {
+            squareArr[ghost.currentIndex].classList.remove(ghost.className);
+            squareArr[ghost.currentIndex].classList.remove('ghost', 'scared-ghost');
 
-        // //remove ghost class 
-        // squareArr[ghost.currentIndex].classList.remove(ghost.className);
-        // ghost.currentIndex += randomDirection;
-        // squareArr[ghost.currentIndex].classList.add(ghost.className);
+            ghost.currentIndex += randomDirection;
 
+            squareArr[ghost.currentIndex].classList.add(ghost.className);
+            squareArr[ghost.currentIndex].classList.add('ghost');
+        } else {
+            randomDirection = directions[Math.floor(Math.random() * directions.length)];
+        }
+
+        if(ghost.isScared){
+            squareArr[ghost.currentIndex].classList.add('scared-ghost');
+        }
+
+        if(ghost.isScared && squareArr[ghost.currentIndex].classList.contains("pacman")) {
+
+            //remove class names
+            squareArr[ghost.currentIndex].classList.remove("ghost", ghost.className, "scared-ghost");
+
+            //send it back
+            ghost.currentIndex = ghost.startIndex;
+
+            //add class names back in
+            squareArr[ghost.currentIndex].classList.add("ghost", ghost.className);
+
+            score += 100;
+            scoreDisplay.innerHTML = score;
+        }
+    
     }, ghost.speed);
 }
-
-clearInterval(ghost.timerId);
+//clearInterval(ghost.timerId);

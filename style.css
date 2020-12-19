@@ -41,3 +41,32 @@ html, body {
 .ghost-lair {
     background-color: darkslategrey;
 }
+
+.blinky, .inky, .pinky, .clyde {
+    border-top-left-radius: 0.3em;
+    border-top-right-radius: 0.3em;
+}
+
+.blinky {
+    background-color: lawngreen;
+    border: none;
+}
+
+.pinky {
+    background-color: pink;
+    border: none;
+}
+
+.inky {
+    background-color: navy;
+    border: none;
+}
+
+.clyde {
+    background-color: powderblue;
+    border: none;
+}
+
+.scared-ghost {
+    background-color: orangered;
+}
