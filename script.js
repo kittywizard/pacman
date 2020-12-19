@@ -225,4 +225,22 @@ function moveGhosts(ghost) {
     
     }, ghost.speed);
 }
-//clearInterval(ghost.timerId);
+
+function gameOver() {
+    if(squareArr[pacmanCurrentIndex].classList.contains("ghost") 
+        && !squareArr[pacmanCurrentIndex].classList.contains('scared-ghost')) {
+    //foreach ghost stop it moving
+    ghosts.forEach(element => {
+        clearInterval(ghost.timerId);
+    });
+
+    //remove eventlistener for key press
+
+    //alert user game over
+
+    }
+    //if square w/ pacman has a ghost and it is NOT scared
+
+
+    //reset?
+}
