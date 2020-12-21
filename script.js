@@ -222,25 +222,30 @@ function moveGhosts(ghost) {
             score += 100;
             scoreDisplay.innerHTML = score;
         }
-    
+        checkForWin();
+        gameOver();
     }, ghost.speed);
 }
 
 function gameOver() {
     if(squareArr[pacmanCurrentIndex].classList.contains("ghost") 
         && !squareArr[pacmanCurrentIndex].classList.contains('scared-ghost')) {
-    //foreach ghost stop it moving
+
     ghosts.forEach(element => {
         clearInterval(ghost.timerId);
+        document.removeEventListener('keyup', gameControl);
+        scoreDisplay.innerHTML = 'Game Over';
     });
 
-    //remove eventlistener for key press
-
-    //alert user game over
-
     }
-    //if square w/ pacman has a ghost and it is NOT scared
+}
 
-
-    //reset?
+function checkForWin() {
+    if (score === 274){
+        ghosts.forEach(element => {
+            clearInterval(ghost.timerId);
+            document.removeEventListener('keyup', gameControl);
+            scoreDisplay.innerHTML = 'You win!';
+    });
+    }
 }
